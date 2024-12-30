@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <title>Westlake introduction</title>
+    <meta charset="utf-8" />
+    <style type="text/css">
+      *,body{
+        padding:0;
+        margin:0;
+      }
+	  html, body {
+	  	
+	      height: 100vh;
+	      width: 100vw;
+	      overflow: hidden;
+	      margin: 0;
+	      padding: 0;
+	  	/* background-image:url("img/视频播放背景图.jpg");
+		
+		
+	  	background-repeat:no-repeat;
+		background-size: cover; */
+	  }
+	  #background{
+		  height: 100vh;
+		    width: 100vw;
+		    overflow: hidden;
+		    margin: 0;
+		    padding: 0;
+		  background-image:url("img/视频播放背景图.jpg");
+		  opacity: 0.5;
+		  
+		  background-repeat:no-repeat;
+		  background-size: cover;
+		  z-index: -1;
+		  position: fixed;
+	  }
+      /* .view_div{
+		justify-content: center;
+		
+        width:500px;
+        margin:0 auto;
+        position:relative;
+      	background-size:cover;
+      }
+      #vo{
+        width:700px;
+        height:700px;
+		position: relative;
+		
+        background-color:black;
+      }*/
+      #controls{
+        width:700px;
+        height:50px;
+        position:absolute;
+        left:0px;
+		
+        bottom:5px;
+        background-color:rgba(0,0,0,0.5);
+        display:none;
+        justify-content:space-between;
+      } 
+	  .view_div {
+	    display: flex;
+	    flex-direction: column; /* 添加这个属性使子元素垂直排列 */
+	    align-items: center; /* 水平居中 */
+	    justify-content: center; /* 垂直居中 */
+	    width: 100%; /* 可以设置为100%或者其他值，根据需要调整 */
+	    height: 100vh; /* 根据需要调整高度 */
+	    margin: 0 auto;
+	    position: relative;
+	    background-size: cover;
+	  }
+	  
+	  #vo {
+	    width: 700px; /* 根据需要调整视频宽度 */
+	    height: 700px; /* 根据需要调整视频高度 */
+	    position: relative;
+	    background-image: url("img/西湖大字.jpg");
+		background-size: 100% 100%; /* 保持图片宽高比，完全适应元素 */
+		
+		
+		
+	  }
+	   /* #controls {
+	    width: 700px; 
+	    height: 50px;
+	    position: absolute;
+	    left: 50%; 
+	    bottom: 20px;
+	    background-color: rgba(0,0,0,0.5);
+	    display: none; 
+	    justify-content: space-between;
+	    transform: translateX(-50%); 
+	  } */
+	  #controls {
+	    width: 700px; /* 满宽度 */
+	    height: 50px;
+	    position: absolute;
+	    left: 50%;
+	    bottom: 20px;
+	    background-color: rgba(0,0,0,0.3); /* 深色背景，高透明度 */
+	    display: none;
+	    justify-content: space-between;
+	    transform: translateX(-50%);
+	    transition: opacity 0.3s; /* 平滑显示和隐藏 */
+	  }
+	  
+	  /* 隐藏控制条时的透明度 */
+	  #controls.hidden {
+	    opacity: 0;
+	    pointer-events: none; /* 防止点击 */
+	  }
+	  
+	  /* 控制条内部的按钮和输入框 */
+	  #controls div {
+	    display: flex;
+	    align-items: center;
+	    margin: 0 10px; /* 元素之间的间距 */
+	  }
+	  
+	  .left img, .right input[type="button"] {
+	    width: 70px; /* 图标大小 */
+	    height: 30px;
+	    cursor: pointer;
+	    filter: invert(0); /* 黑白反转，适合深色背景 */
+	    margin: 0 5px; /* 图标之间的间距 */
+	  }
+	  
+	  /* input[type="text"] { 
+	    width: 60px;
+	    height: 30px;
+	    text-align: center;
+	    border: none;
+	    border-radius: 4px;
+	    background-color: rgba(255,255,255,0.2); 
+	    color: white;
+	    margin: 0 10px;
+	  } */
+	  
+	  /* 鼠标悬停时的样式 */
+	  .left img:hover, .right input[type="button"]:hover {
+	    filter: invert(0); /* 恢复原色 */
+	    background-color: rgba(255,255,255,0.1); /* 鼠标悬停时的背景色 */
+	  }
+	  
+	  /* 视频容器的hover效果 */
+	  .view_div:hover #controls {
+	    display: flex;
+	    opacity: 1;
+	    pointer-events: all; /* 允许点击 */
+	  }
+	  .view_div.hovered #controls {
+	    opacity: 1;
+	    pointer-events: all; /* 允许点击 */
+	  }
+      .left{
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+        align-items:center;
+        width:300px;
+      }
+      .left img{
+        width:30px;
+        height:30px;
+      }
+      #txt{
+        width:60px;
+        margin-right:-70px;
+      }
+      #btn{
+        width:40px;
+      }
+      input{
+        height:30px;
+        line-height:30px;
+        border-radius:8px;
+      }
+      .right{
+        width:200px;
+        display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+        align-items:center;
+      }
+      .view_div:hover #controls{
+        display:flex;
+      }
+	  .image-link {
+	      position: absolute;
+	      bottom: 3px;
+	      left: 3px; 
+	  	  z-index: 100;
+	    }
+    </style>
+    <script>
+      var isPlay = false;
+      $(document).ready(function(){
+          //var isPlay = false;
+          $("#playBtn").click(function(){
+    		  if(isPlay == false){
+    			  $("video").trigger("play");
+        		  $("#playBtn").attr("src","img/播放.png");
+    		  }
+    		  else{
+    			  $("video").trigger("pause");
+        		  $("#playBtn").attr("src","img/暂停.jpg");
+    		  }
+    		  isPlay = !isPlay;
+    		  
+    	  });
+    	  $("#forward").click(function(){
+
+    		  var currentTime = $("video").prop("currentTime");
+    		  $("video").prop("currentTime",currentTime+10);
+    		  
+    		  
+    	  });
+    	  $("#back").click(function(){
+
+    		  var currentTime = $("video").prop("currentTime");
+    		  $("video").prop("currentTime",currentTime-10);
+    		 
+    	  });
+    	  $("#btn").click(function(){
+
+    	      var str = $("#time").val();
+    		  $("video").prop("currentTime",str);
+    		 
+    	  });
+		  $(".view_div").hover(function() {
+		      $(this).addClass("hovered");
+		    }, function() {
+		      $(this).removeClass("hovered");
+		    });
+      })
+
+    </script>
+  </head>
+  <body>
+    <!--视频-->
+	<div id="background"></div>
+	<a href="index.html">
+	  <img src="img/返回首页.jpg" alt="首页" style="width: 50px; height: auto;" class="image-link">
+	</a> 
+    <div class="view_div">
+      <video id="vo" src="视频压缩.mp4" poster="img/视频首图.jpg" type = "video/mp4">		  
+      </video>
+
+      <div id="controls">
+        
+        <div class="left">
+          <img id="playBtn" src="img/暂停.jpg"/>
+          <input id="time" type="text" value="10" />
+          <input id="btn" type="button" value="跳转" />
+        </div>
+        
+        <div class="right">
+          <input type="button" value="倒退 10 秒" id="back" />
+          <input type="button" value="快进 10 秒" id="forward" />
+        </div>
+      </div>
+      
+    </div> 
+  </body>
+</html>
